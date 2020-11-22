@@ -1,0 +1,160 @@
+[
+    {
+        "title": "Push ID",
+        "description": "Push IDs must be unique. Either let the system pick a random one or input your own and hit the enter key",
+        "answers": [
+            {
+                "label": "random push id",
+                "type": "button",
+                "params": "?push="
+            },
+            {
+                "label": "CustomPushID",
+                "type": "text",
+                "params": "?push="
+            }
+        ]
+    },
+    {
+        "title": "What type of share will be allowed?",
+        "description": "Users can share their camera, screen or a file on the computer",
+        "answers": [
+            {
+                "label": "Webcam",
+                "type": "button",
+                "params": "&webcam"
+            },
+            {
+                "label": "Screen",
+                "type": "button",
+                "params": "&screenshare"
+            },
+            {
+                "label": "File",
+                "type": "button",
+                "params": "&fs"
+            },
+            {
+                "label": "Allow all",
+                "type": "button",
+                "params": ""
+            }
+        ]
+    },
+    {
+        "title": "Quality",
+        "description": "Set resolution and fps will be requested but are not guaranteed and depend on the guest's hardware",
+        "answers": [
+            {
+                "label": "Default",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Up to 1080p60",
+                "type": "button",
+                "params": "&quality=0"
+            },
+            {
+                "label": "Up to 720p60",
+                "type": "button",
+                "params": "&quality=1"
+            },
+            {
+                "label": "Up to 360p60",
+                "type": "button",
+                "params": "&quality=2"
+            }
+        ]
+    },
+    {
+        "title": "Auto start",
+        "description": "Auto starts when the camera/audio device is ready.",
+        "answers": [
+            {
+                "label": "No",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Auto start",
+                "type": "button",
+                "params": "&autostart"
+            }
+        ]
+    },
+    {
+        "title": "Video device",
+        "description": "You can ask the user what video device to use. Or pick the system default automatically. Or disable the video device (push audio only, for example). Or select a video device based on the name.",
+        "answers": [
+            {
+                "label": "Ask",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Auto default",
+                "type": "button",
+                "params": "&videodevice=1"
+            },
+            {
+                "label": "Disable",
+                "type": "button",
+                "params": "&videodevice=0"
+            },
+            {
+                "label": "Device name",
+                "type": "text",
+                "params": "&videodevice="
+            }
+        ]
+    },
+    {
+        "title": "Need a room",
+        "description": "Rooms will let multiple people hear and see each other.",
+        "answers": [
+            {
+                "label": "No room",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Room name",
+                "type": "text",
+                "params": "&room="
+            }
+        ]
+    },
+    {
+        "title": "Start muted",
+        "description": "Starts with the microphone muted by default",
+        "answers": [
+            {
+                "label": "No",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Muted",
+                "type": "button",
+                "params": "&muted"
+            }
+        ]
+    },
+    {
+        "title": "Hide video preview",
+        "description": "Disables the local self video preview",
+        "answers": [
+            {
+                "label": "No",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Hide",
+                "type": "button",
+                "params": "&nopreview"
+            }
+        ]
+    }
+]
