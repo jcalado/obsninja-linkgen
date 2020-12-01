@@ -1,7 +1,7 @@
 [
     {
         "title": "Push ID",
-        "description": "Push IDs must be unique. Either let the system pick a random one or input your own and hit the enter key",
+        "description": "Push IDs must be unique. Supply your own custom ID or let the system generate a random ID for you.",
         "answers": [
             {
                 "label": "random push id",
@@ -16,8 +16,8 @@
         ]
     },
     {
-        "title": "What type of share will be allowed?",
-        "description": "Users can share their camera, screen or a file on the computer",
+        "title": "What do you want to share?",
+        "description": "",
         "answers": [
             {
                 "label": "Webcam",
@@ -30,20 +30,46 @@
                 "params": "&screenshare"
             },
             {
+                "label": "Allow both",
+                "type": "button",
+                "params": ""
+            },
+            {
                 "label": "File",
                 "type": "button",
                 "params": "&fs"
+            }
+        ]
+    },
+    {
+        "title": "Camera quality",
+        "description": "Tell OBS Ninja what resolution and fps target you want for your camera. These are not guaranteed, but subject to the system's abilities",
+        "answers": [
+            {
+                "label": "Up to 1080p60",
+                "type": "button",
+                "params": "&quality=0"
             },
             {
-                "label": "Allow all",
+                "label": "Up to 720p30",
+                "type": "button",
+                "params": "&quality=1"
+            },
+            {
+                "label": "Up to 360p30",
+                "type": "button",
+                "params": "&quality=2"
+            },
+            {
+                "label": "Use default",
                 "type": "button",
                 "params": ""
             }
         ]
     },
     {
-        "title": "Quality",
-        "description": "Set resolution and fps will be requested but are not guaranteed and depend on the guest's hardware",
+        "title": "Stereo sound",
+        "description": "Set resolution and fps will be requested but are not guaranteed and depend on the guest's hardware. Warning: audio normalization (auto-gain), noise cancellation and echo cancellation will not be disabled.",
         "answers": [
             {
                 "label": "Default",
@@ -51,28 +77,18 @@
                 "params": ""
             },
             {
-                "label": "Up to 1080p60",
+                "label": "Stereo",
                 "type": "button",
-                "params": "&quality=0"
-            },
-            {
-                "label": "Up to 720p60",
-                "type": "button",
-                "params": "&quality=1"
-            },
-            {
-                "label": "Up to 360p60",
-                "type": "button",
-                "params": "&quality=2"
+                "params": "&stereo=1"
             }
         ]
     },
     {
         "title": "Auto start",
-        "description": "Auto starts when the camera/audio device is ready.",
+        "description": "Auto start when the camera/audio are ready.",
         "answers": [
             {
-                "label": "No",
+                "label": "Don't auto start",
                 "type": "button",
                 "params": ""
             },
@@ -85,7 +101,7 @@
     },
     {
         "title": "Video device",
-        "description": "You can ask the user what video device to use. Or pick the system default automatically. Or disable the video device (push audio only, for example). Or select a video device based on the name.",
+        "description": "The user can choose a video device manually or you can provide a partial device name that OBS Ninja will try to match",
         "answers": [
             {
                 "label": "Ask",
@@ -98,55 +114,75 @@
                 "params": "&videodevice=1"
             },
             {
-                "label": "Disable",
-                "type": "button",
-                "params": "&videodevice=0"
-            },
-            {
-                "label": "Device name",
+                "label": "Match name",
                 "type": "text",
                 "params": "&videodevice="
+            },
+            {
+                "label": "Disable video device",
+                "type": "button",
+                "params": "&videodevice=0"
             }
         ]
     },
     {
-        "title": "Need a room",
-        "description": "Rooms will let multiple people hear and see each other.",
+        "title": "Guest label",
+        "description": "You can set a label for this invite. OBS Studio will use it when you drag the link there; Browser tab will be named after it;",
         "answers": [
+            {
+                "label": "No label",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Let guest decide",
+                "type": "button",
+                "params": "&label="
+            },{
+                "label": "Set label",
+                "type": "text",
+                "params": "&label="
+            }
+        ]
+    },
+    {
+        "title": "Room selection",
+        "description": "Multiple guests can hear and see each other if they join the same room.",
+        "answers": [
+            {
+                "label": "Use named room",
+                "type": "text",
+                "params": "&room="
+            },
             {
                 "label": "No room",
                 "type": "button",
                 "params": ""
-            },
-            {
-                "label": "Room name",
-                "type": "text",
-                "params": "&room="
             }
         ]
     },
     {
-        "title": "Start muted",
-        "description": "Starts with the microphone muted by default",
+        "title": "Mute mic when joining?",
+        "description": "",
         "answers": [
             {
-                "label": "No",
-                "type": "button",
-                "params": ""
-            },
-            {
-                "label": "Muted",
+                "label": "Start muted",
                 "type": "button",
                 "params": "&muted"
+            },
+            {
+                "label": "Start unmuted",
+                "type": "button",
+                "params": ""
             }
         ]
     },
     {
-        "title": "Hide video preview",
-        "description": "Disables the local self video preview",
+        "title": "Local video preview",
+        "description": "",
         "answers": [
             {
-                "label": "No",
+                "label": "Show",
                 "type": "button",
                 "params": ""
             },
