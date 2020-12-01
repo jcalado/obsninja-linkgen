@@ -31,10 +31,6 @@ input[type="radio"] {
 }
 
 #link {
-    position: absolute;
-    width: 60vw;
-    bottom: 0%;
-    transform: translateY(-30%);
     background: var(--container-color);
     padding: 10px;
     text-align: center;
@@ -94,7 +90,7 @@ input[type="radio"] {
 
 #step #stepAnswers {
     display: flex;
-    margin-top: 1em;
+    margin-top: 5em;
 }
 
 #step #stepAnswers a {    
@@ -121,8 +117,6 @@ input[type="radio"] {
 }
 
 #link {
-    transition: top 1s linear;
-    display:none;
 }
 
 #link h1 {
@@ -146,12 +140,15 @@ input[type="radio"] {
 
 }
 
-#progressContainer {
+#progressAndLink {
     width: 60vw;
-    height: 24px;
+    height: auto;
     background-color: black;
     position: absolute;
     bottom: 10%;
+    transition: all 0.3s linear;
+    overflow: hidden;
+
 }
 
 #progress {
@@ -163,4 +160,53 @@ input[type="radio"] {
     padding: 2px;
     line-height: 22px;
     text-align: center;
+}
+
+
+#finalUrl {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (orientation: portrait) {
+   
+    body {
+        align-items: flex-start;
+    }
+   
+    #step {
+       width: 90vw;
+       height: 80vh;
+       position: inherit;
+       top: inherit;
+       transform: inherit;
+   }
+
+   #step #stepNumber {
+    right: calc(50% - 20px);
+    top: 0;
+   }
+
+   #stepAnswers {
+       margin-top: 0px;
+       flex-direction: column;
+   }
+
+   #step #stepAnswers a {
+       margin: 5px;
+   }
+
+   #progressAndLink {
+       width: 90vw;
+       bottom: 20px;
+   }
 }

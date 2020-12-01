@@ -1,119 +1,116 @@
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>OBSN invite link generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
-    <div id="step">
-        <p id="stepNumber">1</p>
-        <h2 id="stepTitle"></h2>
-        <h3 id="stepDescription"></h3>
-        <div id="stepAnswers"></div>
-    </div>
-    <div id="progressContainer">
-        <div id="progress">
-            0%
-        </div>
-    </div>
+	<div id="step">
+		<p id="stepNumber">1</p>
+		<h2 id="stepTitle"></h2>
+		<h3 id="stepDescription"></h3>
+		<div id="stepAnswers"></div>
+	</div>
+	<div id="progressAndLink">
+		<div id="progressContainer">
+			<div id="progress">0%</div>
+		</div>
 
-    <div id="link">
-        <h1></h1>
-        <p id="finalUrl"></p>
-    </div>
-
+		<div id="link">
+			<div id="finalUrl">https://obs.ninja/</div>
+		</div>
+	</div>
 </body>
 <script>
+	function makeid(length) {
+		var result = "";
+		var characters =
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		var charactersLength = characters.length;
+		for (var i = 0; i < length; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+		return result;
+	}
 
-    function makeid(length) {
-        var result = '';
-        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for (var i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
+	var randomId = makeid(10);
 
-    var randomId = makeid(10);
+	var steps;
+    var currentStep;
+	var finalUrl = "https://obs.ninja/";
 
-    var steps;
-    var finalUrl = "https://obs.ninja/";
+	let url = "data.json";
 
-    let url = 'data.json';
+	fetch(url)
+		.then((res) => res.json())
+		.then((out) => {
+			steps = out;
+			printStep(0);
+		})
+		.catch((err) => {
+			throw err;
+		});
 
-    fetch(url)
-        .then(res => res.json())
-        .then((out) => {
-            steps = out
-            console.log('Checkout this JSON! ', steps);
-            printStep(0);
-        })
-        .catch(err => { throw err });
-
-
-    function printStep(index) {
-
-        if (index == steps.length){
+	function printStep(index) {
+		if (index == steps.length) {
             document.getElementById('step').innerHTML = `
             <h1>Here's your URL</h1>
             <a id='outputUrl' href='${finalUrl}'>${finalUrl}</a>`;
-            document.getElementById('link').outerHTML = '';
-            document.getElementById('progress').style.width = "100%";
-            document.getElementById('progress').innerText = "Done!";
-        }
+			
+			document.getElementById("progress").style.width = "100%";
+			document.getElementById("progress").innerText = "Done!";
+            document.getElementById("link").outerHTML= "";
 
-        var percentComplete = index / steps.length * 100;
-        console.log(percentComplete);
-        item = steps[index];
+		}
 
-        document.getElementById('stepTitle').innerText = item.title;
-        document.getElementById('stepDescription').innerText = item.description;
-        document.getElementById('stepAnswers').innerHTML = null;
+		var percentComplete = (index / steps.length) * 100;
+		item = steps[index];
 
-        if (index == 0) {
-            document.getElementById('progress').style.width = "5%";
-        } else {
-            document.getElementById('progress').style.width = percentComplete + "%";
-        }
-        
-        
-        document.getElementById('progress').innerText = index+1 + " / " + Number.parseInt(steps.length + 1);
+		document.getElementById("stepTitle").innerText = item.title;
+		document.getElementById("stepDescription").innerText = item.description;
+		document.getElementById("stepAnswers").innerHTML = null;
 
-        item.answers.forEach(function (answer) {
-            var el;
-            if (answer.type == 'button') {
-                el = document.createElement('a');
-                el.setAttribute("data-value", answer.params);
-                el.innerText = answer.label;
-                el.onclick = function () {
+		if (index == 0) {
+			document.getElementById("progress").style.width = "7%";
+		} else {
+			document.getElementById("progress").style.width = percentComplete + "%";
+		}
 
-                    if (answer.params == "?push=") {
-                        answer.params = answer.params + randomId;
-                    }
+		document.getElementById("progress").innerText =
+			index + 1 + " / " + Number.parseInt(steps.length + 1);
 
-                    finalUrl = finalUrl + answer.params;
-                    console.log(finalUrl);
-                    document.getElementById('finalUrl').innerText = finalUrl;
-                    document.getElementById('stepNumber').innerText = index + 2;
-                    printStep(index + 1);
-                }
-            } else {
-                el = document.createElement('input');
-                el.setAttribute('placeholder', answer.label);
-                el.onkeyup = function (e) {
-                    if (e.keyCode == 13) {
-                        console.log('wut');
-                        console.log(answer.params);
-                        finalUrl = finalUrl + answer.params + el.value;
-                        document.getElementById('finalUrl').innerText = finalUrl;
-                        document.getElementById('stepNumber').innerText = index + 2;
-                        printStep(index + 1);
-                    }
-                }
-            }
+        currentStep = index;
 
-            document.getElementById('stepAnswers').appendChild(el);
-        })
+		item.answers.forEach(function (answer) {
+			var el;
+			if (answer.type == "button") {
+				el = document.createElement("a");
+				el.setAttribute("data-value", answer.params);
+				el.innerText = answer.label;
+				el.onclick = function () {
+					if (answer.params == "?push=") {
+						answer.params = answer.params + randomId;
+					}
 
-    }
+					finalUrl = finalUrl + answer.params;
+					document.getElementById("finalUrl").innerText = finalUrl;
+					document.getElementById("stepNumber").innerText = index + 2;
+					printStep(index + 1);
+				};
+			} else {
+				el = document.createElement("input");
+				el.setAttribute("placeholder", answer.label);
+				el.onkeyup = function (e) {
+					if (e.keyCode == 13) {
+						finalUrl = finalUrl + answer.params + el.value;
+						document.getElementById("finalUrl").innerText = finalUrl;
+						document.getElementById("stepNumber").innerText = index + 2;
+						printStep(index + 1);
+					}
+				};
+			}
 
+			document.getElementById("stepAnswers").appendChild(el);
+		});
+	}
 </script>
