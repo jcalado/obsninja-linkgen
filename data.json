@@ -1,20 +1,5 @@
 [
-    {
-        "title": "Push ID",
-        "description": "Push IDs must be unique. Supply your own custom ID or let the system generate a random ID for you.",
-        "answers": [
-            {
-                "label": "random push id",
-                "type": "button",
-                "params": "?push="
-            },
-            {
-                "label": "CustomPushID",
-                "type": "text",
-                "params": "?push="
-            }
-        ]
-    },
+    
     {
         "title": "What do you want to share?",
         "description": "",
@@ -22,22 +7,22 @@
             {
                 "label": "Webcam",
                 "type": "button",
-                "params": "&webcam"
+                "params": "?webcam"
             },
             {
                 "label": "Screen",
                 "type": "button",
-                "params": "&screenshare"
+                "params": "?screenshare"
             },
             {
                 "label": "Allow both",
                 "type": "button",
-                "params": ""
+                "params": "?"
             },
             {
                 "label": "File",
                 "type": "button",
-                "params": "&fs"
+                "params": "?fs"
             }
         ]
     },
@@ -84,8 +69,8 @@
         ]
     },
     {
-        "title": "Auto start",
-        "description": "Auto start when the camera/audio are ready.",
+        "title": "Auto start with Default Camera and Mic",
+        "description": "With this option, the user's default camera and mic are used, bypassing the selection page. This can be changed after the fact by selecting the gear icon.",
         "answers": [
             {
                 "label": "Don't auto start",
@@ -95,39 +80,13 @@
             {
                 "label": "Auto start",
                 "type": "button",
-                "params": "&autostart"
-            }
-        ]
-    },
-    {
-        "title": "Video device",
-        "description": "The user can choose a video device manually or you can provide a partial device name that OBS Ninja will try to match",
-        "answers": [
-            {
-                "label": "Ask",
-                "type": "button",
-                "params": ""
-            },
-            {
-                "label": "Auto default",
-                "type": "button",
-                "params": "&videodevice=1"
-            },
-            {
-                "label": "Match name",
-                "type": "text",
-                "params": "&videodevice="
-            },
-            {
-                "label": "Disable video device",
-                "type": "button",
-                "params": "&videodevice=0"
+                "params": "&autostart&device=1"
             }
         ]
     },
     {
         "title": "Guest label",
-        "description": "You can set a label for this invite. OBS Studio will use it when you drag the link there; Browser tab will be named after it;",
+        "description": "You can set a label for this invite. OBS Studio will use it when you drag the link there; Browser tab will be named after it.",
         "answers": [
             {
                 "label": "No label",
@@ -162,6 +121,32 @@
         ]
     },
     {
+        "title": "Control what the guest see",
+        "description": "Broadcast Mode makes it so guests in a room can only see the video feed from the director. Audio between all the participants remains. This saves on guest's bandwidth and CPU usage. A custom push ID can also be used.",
+        "answers": [
+            {
+                "label": "Enable Broadcast Mode",
+                "type": "button",
+                "params": "&broadcast"
+            },
+            {
+                "label": "Guests see everyone",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "Custom Broadcast PushID",
+                "type": "text",
+                "params": "&broadcast="
+            },
+            {
+                "label": "I'm not using a room",
+                "type": "button",
+                "params": ""
+            }
+        ]
+    },
+    {
         "title": "Mute mic when joining?",
         "description": "",
         "answers": [
@@ -190,6 +175,43 @@
                 "label": "Hide",
                 "type": "button",
                 "params": "&nopreview"
+            }
+        ]
+    },
+    {
+        "title": "Video Codec",
+        "description": "The Default Codec (VP8) is a good balance for most. In certain rare situations, H.264 can be hardware accelerated and VP9 is only intended for those who can cope with the higher CPU usage in exchange for better quality at lower bitrates. Mobile users should stick to the default.",
+        "answers": [
+            {
+                "label": "Default",
+                "type": "button",
+                "params": ""
+            },
+            {
+                "label": "H.264",
+                "type": "button",
+                "params": "&codec=h264"
+            },
+            {
+                "label": "VP9",
+                "type": "button",
+                "params": "&codec=vp9"
+            }
+        ]
+    },
+    {
+        "title": "Push ID",
+        "description": "Push IDs must be unique. Supply your own custom ID or let the system generate a random ID for you. This is useful is you want your guests to have reusable links.",
+        "answers": [
+            {
+                "label": "random push id",
+                "type": "button",
+                "params": "push="
+            },
+            {
+                "label": "CustomPushID",
+                "type": "text",
+                "params": "push="
             }
         ]
     }
